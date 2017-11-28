@@ -1,0 +1,7 @@
+
+*.xml
+.idea/*
+examples/*
+out/*
+*.iml
+*.txt
