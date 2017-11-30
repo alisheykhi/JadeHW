@@ -10,7 +10,7 @@ public class Client extends Agent{
     protected void setup() {
         addBehaviour(new TickerBehaviour(this,10000) {
             public void onTick() {
-                String array = Utility.randomArray(50);
+                String array = Utility.randomArray(10);
                 manager = new AID("manager@192.168.21.100:1099/JADE");
                 ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
                 cfp.addReceiver(manager);
