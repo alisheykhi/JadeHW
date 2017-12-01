@@ -24,7 +24,7 @@ public class Deviation extends Agent {
 
     protected void setup() {
         agent = new AgentType(this.getAID(),"Deviation", (Math.random() * 1000));
-        System.out.println(getAID().getLocalName()+":\tHello! Deviation Agent " + getAID().getLocalName() + " is ready.");
+        System.out.println(getAID().getLocalName()+":\tHello! Deviation Agent " + getAID().getLocalName() + "by price "+agent.getPrice()+" is ready.");
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
         sd.setType("Manager");

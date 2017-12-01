@@ -24,7 +24,7 @@ public class MIN_MAX extends Agent {
 
     protected void setup() {
         agent = new AgentType(this.getAID(), "MinMax", (Math.random() * 1000));
-        System.out.println(getAID().getLocalName()+":\tHello! MinMax Agent " + getAID().getLocalName() + " is ready.");
+        System.out.println(getAID().getLocalName()+":\tHello! MinMax Agent " + getAID().getLocalName() + " by price "+agent.getPrice()+" is ready.");
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
         sd.setType("Manager");
@@ -48,8 +48,8 @@ public class MIN_MAX extends Agent {
         public void action() {
             ACLMessage reg = new ACLMessage(ACLMessage.INFORM);
             reg.setConversationId("register");
-            for (int i = 0; i < managers.length; ++i) {
-                reg.addReceiver(managers[i]);
+            for (AID manager : managers) {
+                reg.addReceiver(manager);
             }
             try {
                 reg.setContentObject(agent);

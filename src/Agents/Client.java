@@ -137,9 +137,9 @@ public class Client extends Agent{
                     if (replyMinMax != null && minmaxflag) {
                         if (replyMinMax.getPerformative() == ACLMessage.INFORM) {
                             minmaxflag =false;
-                            System.out.println(myAgent.getLocalName()+":\tsuccessfully received answer from agent "+replyMinMax.getSender().getLocalName());
+                            System.out.println(myAgent.getLocalName()+":\tSuccessfully received answer from agent "+replyMinMax.getSender().getLocalName());
                             System.out.println(myAgent.getLocalName()+":\tMinMax = "+replyMinMax.getContent());
-                            System.out.println(myAgent.getLocalName()+":\tPrice = "+bestPrice.getMinMax().getPrice());
+                            System.out.println(myAgent.getLocalName()+":\tMIN_MAX Price = "+bestPrice.getMinMax().getPrice());
 
                         }
                         else {
@@ -153,9 +153,9 @@ public class Client extends Agent{
                     else if(replyDeviation != null && deviationflag) {
                         if (replyDeviation.getPerformative() == ACLMessage.INFORM) {
                             deviationflag = false;
-                            System.out.println(myAgent.getLocalName()+":\tsuccessfully received answer from agent "+replyDeviation.getSender().getLocalName());
-                            System.out.println(myAgent.getLocalName()+":\tdeviation = "+replyDeviation.getContent());
-                            System.out.println(myAgent.getLocalName()+":\tPrice = "+bestPrice.getDeviation().getPrice());
+                            System.out.println(myAgent.getLocalName()+":\tSuccessfully received answer from agent "+replyDeviation.getSender().getLocalName());
+                            System.out.println(myAgent.getLocalName()+":\tDeviation = "+replyDeviation.getContent());
+                            System.out.println(myAgent.getLocalName()+":\tDeviation Price = "+bestPrice.getDeviation().getPrice());
 
                         }
                         else {
