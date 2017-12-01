@@ -1,6 +1,7 @@
 package RequiredClass;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class RandomArray implements Serializable{
     private int[] randomArray;
@@ -8,7 +9,7 @@ public class RandomArray implements Serializable{
     public RandomArray(int arraySize) {
         this.randomArray = new int[arraySize];
         for( int i = 0; i <  arraySize; i++) {
-            this.randomArray[i] = ((int) (Math.random() * 100));
+            this.randomArray[i] = ((int) (Math.random() * 100 *arraySize));
         }
     }
 
@@ -21,5 +22,11 @@ public class RandomArray implements Serializable{
 
     public void setRandomArray(int[] randomArray) {
         this.randomArray = randomArray;
+    }
+
+    @Override
+    public String toString() {
+        return "randomArray=" + Arrays.toString(randomArray) +
+                '}';
     }
 }

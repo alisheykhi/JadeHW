@@ -26,6 +26,7 @@ public class Client extends Agent{
             public void onTick() {
                 int step = 0;
                 randomArray = new RandomArray((int)(Math.random() * 1000));
+                System.out.println(getAID().getLocalName()+":\t" +randomArray.toString());
                 DFAgentDescription template = new DFAgentDescription();
                 ServiceDescription sd = new ServiceDescription();
                 sd.setType("Manager");
@@ -61,8 +62,8 @@ public class Client extends Agent{
                 case 0:
                     //send request to manager
                     ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
-                    for (int i = 0; i < managers.length; ++i) {
-                        req.addReceiver(managers[i]);
+                    for (AID manager : managers) {
+                        req.addReceiver(manager);
                     }
                     try {
                         req.setContentObject(randomArray);
