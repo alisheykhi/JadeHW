@@ -74,7 +74,7 @@ public class Client extends Agent{
                     req.setConversationId("findAgent");
                     req.setContent("Please find MinMax and Deviation Agent");
                     myAgent.send(req);
-                    System.out.println(myAgent.getLocalName()+":\tSend request (find Agent) to manager"+managers[0].getLocalName());
+                    System.out.println(myAgent.getLocalName()+":\tSend request (find Agent) to manager "+managers[0].getLocalName());
                     mt = MessageTemplate.and(MessageTemplate.MatchConversationId("findAgent"),
                             MessageTemplate.MatchInReplyTo(req.getReplyWith()));
                     step = 1;

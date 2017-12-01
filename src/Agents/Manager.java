@@ -102,7 +102,7 @@ public class Manager  extends Agent {
                 addBehaviour(new OneShotBehaviour() {
                     public void action() {
                         bestMinMax = currentAgent;
-                        System.out.println(myAgent.getLocalName()+":\tBest MinMax Updated by " + currentAgent.getName().getLocalName() + "by Price " + currentAgent.getPrice());
+                        System.out.println(myAgent.getLocalName()+":\tBest MinMax Updated by " + currentAgent.getName().getLocalName() + " by Price " + currentAgent.getPrice());
                     }
                 });
             }
@@ -113,7 +113,7 @@ public class Manager  extends Agent {
                 addBehaviour(new OneShotBehaviour() {
                     public void action() {
                         bestDeviation = currentAgent;
-                        System.out.println(myAgent.getLocalName()+":\tBest Deviation Updated by " + currentAgent.getName().getLocalName() + "by Price " + currentAgent.getPrice());
+                        System.out.println(myAgent.getLocalName()+":\tBest Deviation Updated by " + currentAgent.getName().getLocalName() + " by Price " + currentAgent.getPrice());
                     }
                 });
             }
