@@ -20,7 +20,7 @@ public class Client extends Agent{
     private RandomArray randomArray;
 
     protected void setup() {
-        System.out.println(getAID().getLocalName()+": Hello! Client " + getAID().getLocalName()+ " is ready.");
+        System.out.println(getAID().getLocalName()+":\tHello! Client " + getAID().getLocalName()+ " is ready.");
 
         addBehaviour(new TickerBehaviour(this,10000) {
             public void onTick() {
@@ -33,11 +33,9 @@ public class Client extends Agent{
                 template.addServices(sd);
                 try {
                     DFAgentDescription[] result = DFService.search(myAgent, template);
-                    System.out.println("Found the following " + result.length + " managers:");
                     managers = new AID[result.length];
                     for (int i = 0; i < result.length; ++i) {
                         managers[i] = result[i].getName();
-                        System.out.println(managers[i].getName());
                     }
                 }
                 catch (FIPAException fe) {
@@ -75,7 +73,7 @@ public class Client extends Agent{
                     req.setConversationId("findAgent");
                     req.setContent("Please find MinMax and Deviation Agent");
                     myAgent.send(req);
-                    System.out.println("Send request to manager");
+                    System.out.println(myAgent.getLocalName()+":\tSend request (find Agent) to manager"+managers[0].getLocalName());
                     mt = MessageTemplate.and(MessageTemplate.MatchConversationId("findAgent"),
                             MessageTemplate.MatchInReplyTo(req.getReplyWith()));
                     step = 1;
@@ -138,9 +136,9 @@ public class Client extends Agent{
                     if (replyMinMax != null && minmaxflag) {
                         if (replyMinMax.getPerformative() == ACLMessage.INFORM) {
                             minmaxflag =false;
-                            System.out.println("successfully received answer from agent "+replyMinMax.getSender().getName());
-                            System.out.println("MinMax = "+replyMinMax.getContent());
-                            System.out.println("Price = "+bestPrice.getMinMax().getPrice());
+                            System.out.println(myAgent.getLocalName()+":\tsuccessfully received answer from agent "+replyMinMax.getSender().getLocalName());
+                            System.out.println(myAgent.getLocalName()+":\tMinMax = "+replyMinMax.getContent());
+                            System.out.println(myAgent.getLocalName()+":\tPrice = "+bestPrice.getMinMax().getPrice());
 
                         }
                         else {
@@ -154,9 +152,9 @@ public class Client extends Agent{
                     else if(replyDeviation != null && deviationflag) {
                         if (replyDeviation.getPerformative() == ACLMessage.INFORM) {
                             deviationflag = false;
-                            System.out.println("successfully received answer from agent "+replyDeviation.getSender().getName());
-                            System.out.println("deviation = "+replyDeviation.getContent());
-                            System.out.println("Price = "+bestPrice.getDeviation().getPrice());
+                            System.out.println(myAgent.getLocalName()+":\tsuccessfully received answer from agent "+replyDeviation.getSender().getLocalName());
+                            System.out.println(myAgent.getLocalName()+":\tdeviation = "+replyDeviation.getContent());
+                            System.out.println(myAgent.getLocalName()+":\tPrice = "+bestPrice.getDeviation().getPrice());
 
                         }
                         else {

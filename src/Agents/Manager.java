@@ -35,7 +35,7 @@ public class Manager  extends Agent {
         } catch (FIPAException fe) {
             fe.printStackTrace();
         }
-        System.out.println(getAID().getLocalName()+": Hello! Manager " + getAID().getLocalName()+ " is ready.");
+        System.out.println(getAID().getLocalName()+":\tHello! Manager " + getAID().getLocalName()+ " is ready.");
 
         addBehaviour(new RegisterAgent());
         addBehaviour(new WaitForClientRequest());
@@ -54,7 +54,7 @@ public class Manager  extends Agent {
                 } catch (UnreadableException e) {
                     e.printStackTrace();
                 }
-                System.out.println(getAID().getLocalName()+": received register inform ("+sender.getType()+") from " + sender.getName().getLocalName());
+                System.out.println(getAID().getLocalName()+":\treceived register inform ("+sender.getType()+") from " + sender.getName().getLocalName());
                 switch (sender.getType()) {
                     case "MinMax":
                         minMax.add(sender);
@@ -78,7 +78,7 @@ public class Manager  extends Agent {
                 ACLMessage reply = msg.createReply();
                 String content = msg.getContent();
                 if ((content != null) && (content.indexOf("Please find MinMax and Deviation Agent") != -1)) {
-                    System.out.println("Receive find request from " + msg.getSender().getName());
+                    System.out.println(getLocalName()+":\tReceived find request from " + msg.getSender().getLocalName());
                     reply.setPerformative(ACLMessage.INFORM);
                     RequestAgent ra = new RequestAgent(bestMinMax, bestDeviation);
                     try {
@@ -86,6 +86,7 @@ public class Manager  extends Agent {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    System.out.println(getLocalName()+":\tsend find inform to " + msg.getSender().getLocalName());
                     myAgent.send(reply);
                 }
                 else {
@@ -101,7 +102,7 @@ public class Manager  extends Agent {
                 addBehaviour(new OneShotBehaviour() {
                     public void action() {
                         bestMinMax = currentAgent;
-                        System.out.println(myAgent.getLocalName()+": Best MinMax Updated by " + currentAgent.getName().getLocalName() + "by Price " + currentAgent.getPrice());
+                        System.out.println(myAgent.getLocalName()+":\tBest MinMax Updated by " + currentAgent.getName().getLocalName() + "by Price " + currentAgent.getPrice());
                     }
                 });
             }
@@ -112,38 +113,9 @@ public class Manager  extends Agent {
                 addBehaviour(new OneShotBehaviour() {
                     public void action() {
                         bestDeviation = currentAgent;
-                        System.out.println(myAgent.getLocalName()+": Best Deviation Updated by " + currentAgent.getName().getLocalName() + "by Price " + currentAgent.getPrice());
+                        System.out.println(myAgent.getLocalName()+":\tBest Deviation Updated by " + currentAgent.getName().getLocalName() + "by Price " + currentAgent.getPrice());
                     }
                 });
             }
         }
     }
-
-//    protected void setup() {
-//        addBehaviour(new CyclicBehaviour(this) {
-//            public void action() {
-//                MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.CFP);
-//                ACLMessage msg = myAgent.receive(mt);
-//                if (msg != null) {
-//                    // CFP Message received. Process it
-//                    String array = msg.getContent(); // this is one of the goods
-//                    String maxvalue = Utility.maxValue(array);
-//                    ACLMessage reply = msg.createReply();
-//                    if (maxvalue != "0") {
-//                        reply.setPerformative(ACLMessage.PROPOSE);
-//                        reply.setContent(maxvalue);
-//                    }
-//                    else {
-//                        // The requested good is NOT available for sale.
-//                        reply.setPerformative(ACLMessage.REFUSE);
-//                        reply.setContent("not-available");
-//                    }
-//                    System.out.println(myAgent.getAID()+reply.getContent());
-//                    myAgent.send(reply);
-//                }
-//                else {
-//                    block();
-//                }
-//            }
-//        } );
-//    }

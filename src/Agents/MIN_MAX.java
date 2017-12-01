@@ -24,7 +24,7 @@ public class MIN_MAX extends Agent {
 
     protected void setup() {
         agent = new AgentType(this.getAID(), "MinMax", (Math.random() * 1000));
-        System.out.println(getAID().getLocalName()+": Hello! MinMax Agent " + getAID().getLocalName() + " is ready.");
+        System.out.println(getAID().getLocalName()+":\tHello! MinMax Agent " + getAID().getLocalName() + " is ready.");
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
         sd.setType("Manager");
@@ -61,7 +61,7 @@ public class MIN_MAX extends Agent {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(myAgent.getAID().getLocalName()+ ": send register inform (MinMax) to manager "+managers[0].getLocalName());
+            System.out.println(myAgent.getAID().getLocalName()+ ":\tsend register inform (MinMax) to manager "+managers[0].getLocalName());
             myAgent.send(reg);
             done++;
         }
@@ -87,9 +87,10 @@ public class MIN_MAX extends Agent {
                 int min = stat.getMin();
                 int max = stat.getMax();
                 String ans = "Minimum is "+min+" and Maximum is "+max;
-                System.out.println("Agent "+getLocalName()+" - Received Min_Max Request from "+msg.getSender().getLocalName());
+                System.out.println(getLocalName()+":\tReceived Min_Max Request from "+msg.getSender().getLocalName());
                 reply.setPerformative(ACLMessage.INFORM);
                 reply.setContent(ans);
+                System.out.println(getLocalName()+":\tsend Min_Max inform to "+msg.getSender().getLocalName());
                 myAgent.send(reply);
             }
             else {

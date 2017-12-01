@@ -24,7 +24,7 @@ public class Deviation extends Agent {
 
     protected void setup() {
         agent = new AgentType(this.getAID(),"Deviation", (Math.random() * 1000));
-        System.out.println(getAID().getLocalName()+": Hello! Deviation Agent " + getAID().getLocalName() + " is ready.");
+        System.out.println(getAID().getLocalName()+":\tHello! Deviation Agent " + getAID().getLocalName() + " is ready.");
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
         sd.setType("Manager");
@@ -61,7 +61,7 @@ public class Deviation extends Agent {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(myAgent.getAID().getLocalName()+ ": send register inform (Deviation) to manager "+managers[0].getLocalName());
+            System.out.println(myAgent.getAID().getLocalName()+ ":\tsend register inform (Deviation) to manager "+managers[0].getLocalName());
             myAgent.send(reg);
             done++;
         }
@@ -92,9 +92,10 @@ public class Deviation extends Agent {
                 variance = variance/stat.getCount();
                 double dev = Math.sqrt(variance);
                 String ans = "Deviation is "+dev;
-                System.out.println("Agent "+getLocalName()+" - Received Min_MAX Request from "+msg.getSender().getLocalName());
+                System.out.println(getLocalName()+":\tReceived Min_MAX Request from "+msg.getSender().getLocalName());
                 reply.setPerformative(ACLMessage.INFORM);
                 reply.setContent(ans);
+                System.out.println(getLocalName()+":\tsend Deviation inform to "+msg.getSender().getLocalName());
                 myAgent.send(reply);
             }
             else {
